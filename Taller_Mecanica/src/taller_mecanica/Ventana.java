@@ -2,7 +2,6 @@
 package taller_mecanica;
 
 import java.time.LocalDate;
-import java.util.Date;
 import javax.swing.JOptionPane;
 
 
@@ -10,8 +9,17 @@ public class Ventana extends javax.swing.JFrame {
 
     ListaDoble lista = new ListaDoble();
     
-    public Ventana() {
+    private javax.swing.JTextArea txtPro;
+    
+    public Ventana(javax.swing.JTextArea txtPro) {
         initComponents();
+        this.txtPro = txtPro;
+        
+    }
+    
+    public void imprimirNodoEnConsola(Nodo nodo) {
+        System.out.println("Contenido del nodo:");
+        System.out.println(nodo);
     }
 
     /**
@@ -217,50 +225,55 @@ public class Ventana extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-    /* Set the Nimbus look and feel */
-    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-     * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-     */
-    try {
-        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-            if ("Nimbus".equals(info.getName())) {
-                javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                break;
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
             }
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Ventana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-    } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-        java.util.logging.Logger.getLogger(Ventana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    }
-    //</editor-fold>
+        //</editor-fold>
 
-    /* Create and display the form */
-    java.awt.EventQueue.invokeLater(() -> {
-        new Ventana().setVisible(true);
-        
-        // Crear una instancia de LocalDate con la fecha actual
-        LocalDate fechaActual = LocalDate.now();
-        
-        // Crear un nuevo nodo con datos específicos
-        
-        Nodo miNodo = new Nodo(
-                
-                123456779,          // cedula
-                "Juan Pérez",       // nombre
-                "Calle 123",        // direccion
-                "555-1234",         // telefono
-                "ABC123",           // placa
-                "Toyota",           // marca
-                "Corolla",          // modelo
-                "Reparación",       // motivo_i
-                  3326,             //costo1
-                fechaActual         // fec_Ingreso
-        );
-        
-        // Imprimir el nodo para verificar que se haya creado correctamente
-        System.out.println(miNodo);
-    });
-}
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(() -> {
+            javax.swing.JTextArea txtPro = new javax.swing.JTextArea();
+            Ventana ventana = new Ventana(txtPro);
+            ventana.setVisible(true);
+            //new Ventana(txtPro).setVisible(true);
+            //new Ventana().setVisible(true);
+
+            // Crear una instancia de LocalDate con la fecha actual
+            LocalDate fechaActual = LocalDate.now();
+
+            // Crear un nuevo nodo con datos específicos
+
+            Nodo miNodo = new Nodo(
+
+                    123456779,          // cedula
+                    "Juan Pérez",       // nombre
+                    "Calle 123",        // direccion
+                    "555-1234",         // telefono
+                    "ABC123",           // placa
+                    "Toyota",           // marca
+                    "Corolla",          // modelo
+                    "Reparación",       // motivo_i
+                    3326,             //costo1
+                    fechaActual         // fec_Ingreso
+            );
+
+            // Imprimir el nodo para verificar que se haya creado correctamente
+            //System.out.println(miNodo);
+            ventana.imprimirNodoEnConsola(miNodo);
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnadminis;
