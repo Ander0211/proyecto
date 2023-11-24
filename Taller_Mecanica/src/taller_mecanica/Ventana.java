@@ -242,7 +242,9 @@ public class Ventana extends javax.swing.JFrame {
         LocalDate fechaActual = LocalDate.now();
         
         // Crear un nuevo nodo con datos específicos
+        
         Nodo miNodo = new Nodo(
+                
                 123456779,          // cedula
                 "Juan Pérez",       // nombre
                 "Calle 123",        // direccion
@@ -251,6 +253,7 @@ public class Ventana extends javax.swing.JFrame {
                 "Toyota",           // marca
                 "Corolla",          // modelo
                 "Reparación",       // motivo_i
+                  3326,             //costo1
                 fechaActual         // fec_Ingreso
         );
         

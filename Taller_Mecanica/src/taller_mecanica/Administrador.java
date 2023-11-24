@@ -5,6 +5,8 @@
  */
 package taller_mecanica;
 
+import java.util.Calendar;
+import java.util.Date;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
@@ -46,9 +48,8 @@ public class Administrador extends javax.swing.JDialog {
         bntrepor1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtresultado = new javax.swing.JTextArea();
-        Jmes = new javax.swing.JComboBox<>();
-        Jaño = new javax.swing.JComboBox<>();
         Jservicio = new javax.swing.JComboBox<>();
+        JFecha3 = new com.toedter.calendar.JDateChooser();
 
         jButton2.setText("jButton2");
 
@@ -71,10 +72,6 @@ public class Administrador extends javax.swing.JDialog {
         txtresultado.setRows(5);
         jScrollPane1.setViewportView(txtresultado);
 
-        Jmes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "noviembre", "Diciembre" }));
-
-        Jaño.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2022", "2023" }));
-
         Jservicio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mano de obra", "Repuestos", "Insumos", "Reparaciones" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -91,33 +88,29 @@ public class Administrador extends javax.swing.JDialog {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 19, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(Jmes, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Jaño, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(124, 124, 124))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bntrepor1)
-                        .addGap(104, 104, 104)))
+                .addGap(130, 130, 130)
+                .addComponent(JFecha3, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Jservicio, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(124, 124, 124))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(298, 298, 298)
+                .addComponent(bntrepor1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Jservicio, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Jmes, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Jaño, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(54, 54, 54)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23)
+                        .addComponent(Jservicio, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JFecha3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
                 .addComponent(bntrepor1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 166, Short.MAX_VALUE)
+                .addGap(137, 137, 137)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -148,11 +141,92 @@ public class Administrador extends javax.swing.JDialog {
         return reporte.toString();
     }
     private void bntrepor1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntrepor1ActionPerformed
-        String mesSeleccionado = (String) Jmes.getSelectedItem();
-        String añoSeleccionado = (String) Jaño.getSelectedItem();
-        String tipoServicioSeleccionado = (String) Jservicio.getSelectedItem();
+    
+        Nodo aux = lista.pri;
+        txtresultado.setText("");
 
-         String reporte = generarReporte(mesSeleccionado, añoSeleccionado, tipoServicioSeleccionado);
+        double sumaEnero = 0;
+        double sumaFebrero = 0;
+        double sumaMarzo = 0;
+        double sumaAbril = 0;
+        double sumaMayo = 0;
+        double sumaJunio = 0;
+        double sumaJulio = 0;
+        double sumaAgosto = 0;
+        double sumaSeptiembre = 0;
+        double sumaOctubre = 0;
+        double sumaNoviembre = 0;
+        double sumaDiciembre = 0;
+        while (aux != null && aux.fec_Ingreso != null) {
+            
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(aux.fec_Ingreso);
+            int mesActual = calendar.get(Calendar.MONTH) + 1;
+
+            double sumaMensual = 0;
+
+            NodoRep aux2 = aux.priRep;
+            
+            while (aux2 != null) {
+                
+                aux2 = aux2.sigREP;
+            }
+            switch (mesActual) {
+                case 1:
+                    sumaEnero += sumaMensual;
+                    break;
+                case 2:
+                    sumaFebrero += sumaMensual;
+                    break;
+                case 3:
+                    sumaMarzo += sumaMensual;
+                    break;
+                case 4:
+                    sumaAbril += sumaMensual;
+                    break;
+                case 5:
+                    sumaMayo += sumaMensual;
+                    break;
+                case 6:
+                    sumaJunio += sumaMensual;
+                    break;
+                case 7:
+                    sumaJulio += sumaMensual;
+                    break;
+                case 8:
+                    sumaAgosto += sumaMensual;
+                    break;
+                case 9:
+                    sumaSeptiembre += sumaMensual;
+                    break;
+                case 10:
+                    sumaOctubre += sumaMensual;
+                    break;
+                case 11:
+                    sumaNoviembre += sumaMensual;
+                    break;
+                case 12:
+                    sumaDiciembre += sumaMensual;
+                    break;
+                default:
+                    break;
+            }
+
+            aux = aux.sig;
+        }
+        // Mostrar las sumas por cada mes
+        txtresultado.append("Recaudado en Enero: $" + sumaEnero + "\n");
+        txtresultado.append("Recaudado en Febrero: $" + sumaFebrero + "\n");
+        txtresultado.append("Recaudado en Marzo: $" + sumaMarzo + "\n");
+        txtresultado.append("Recaudado en Abril: $" + sumaAbril + "\n");
+        txtresultado.append("Recaudado en Mayo: $" + sumaMayo + "\n");
+        txtresultado.append("Recaudado en Junio: $" + sumaJunio + "\n");
+        txtresultado.append("Recaudado en Julio: $" + sumaJulio + "\n");
+        txtresultado.append("Recaudado en Agosto: $" + sumaAgosto + "\n");
+        txtresultado.append("Recaudado en Septiembre: $" + sumaSeptiembre + "\n");
+        txtresultado.append("Recaudado en Octubre: $" + sumaOctubre + "\n");
+        txtresultado.append("Recaudado en Noviembre: $" + sumaNoviembre + "\n");
+        txtresultado.append("Recaudado en Diciembre: $" + sumaDiciembre + "\n");
     }//GEN-LAST:event_bntrepor1ActionPerformed
 
     /**
@@ -161,8 +235,7 @@ public class Administrador extends javax.swing.JDialog {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> Jaño;
-    private javax.swing.JComboBox<String> Jmes;
+    private com.toedter.calendar.JDateChooser JFecha3;
     private javax.swing.JComboBox<String> Jservicio;
     private javax.swing.JButton bntrepor1;
     private javax.swing.JButton jButton2;

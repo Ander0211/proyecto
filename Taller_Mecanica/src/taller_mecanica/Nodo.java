@@ -13,11 +13,12 @@ public class Nodo {
     String marca;
     String modelo;
     String motivo_i;
+    int costo1;
     LocalDate fec_Ingreso;
     Nodo sig, ant;
     NodoRep priRep;
     
-    public Nodo(int cedula, String nombre, String direccion, String telefono, String placa, String marca, String modelo, String motivo_i, LocalDate fec_Ingreso) {
+    public Nodo(int cedula, String nombre, String direccion, String telefono, String placa, String marca, String modelo, String motivo_i, int costo1,LocalDate fec_Ingreso) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.direccion = direccion;
@@ -26,6 +27,7 @@ public class Nodo {
         this.marca = marca;
         this.modelo = modelo;
         this.motivo_i = motivo_i;
+        this.costo1= costo1;
         this.priRep = null;
         this.fec_Ingreso = fec_Ingreso;
         
@@ -33,9 +35,11 @@ public class Nodo {
         this.ant = null;
     }
 
-
     @Override
     public String toString() {
-        return "Nodo{" + "cedula=" + cedula + ", nombre=" + nombre + ", direccion=" + direccion + ", telefono=" + telefono + ", placa=" + placa + ", marca=" + marca + ", modelo=" + modelo + ", motivo_i=" + motivo_i + ", fec_Ingreso=" + fec_Ingreso + '}';
-    }   
+        return "Nodo{" + "cedula=" + cedula + ", nombre=" + nombre + ", direccion=" + direccion + ", telefono=" + telefono + ", placa=" + placa + ", marca=" + marca + ", modelo=" + modelo + ", motivo_i=" + motivo_i + ", costo1=" + costo1 + ", fec_Ingreso=" + fec_Ingreso + '}';
+    }
+
+
+       
 }

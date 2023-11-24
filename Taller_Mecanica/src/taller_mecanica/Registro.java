@@ -50,6 +50,8 @@ public class Registro extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtPro = new javax.swing.JTextArea();
         JMotivo = new javax.swing.JComboBox<>();
+        jLabel10 = new javax.swing.JLabel();
+        costo1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro \"El santo cachon\"");
@@ -57,7 +59,6 @@ public class Registro extends javax.swing.JDialog {
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Registrate en \"El Santo Cachon\"");
 
         txtidenti.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -131,11 +132,19 @@ public class Registro extends javax.swing.JDialog {
         });
 
         txtPro.setColumns(20);
-        txtPro.setForeground(new java.awt.Color(0, 0, 0));
         txtPro.setRows(5);
         jScrollPane1.setViewportView(txtPro);
 
         JMotivo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mantenimiento básico", "Reparaciones mecánicas", "Servicios de carrocería" }));
+
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel10.setText("Costo:");
+
+        costo1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                costo1KeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -154,17 +163,22 @@ public class Registro extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(366, 366, 366)
+                                .addComponent(Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel10))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtidenti)
                                     .addComponent(txtnombre)
                                     .addComponent(txtdireccion)
-                                    .addComponent(txttelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
+                                    .addComponent(txttelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                                    .addComponent(costo1))
                                 .addGap(79, 79, 79)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -178,10 +192,7 @@ public class Registro extends javax.swing.JDialog {
                                     .addComponent(txtplaca, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
                                     .addComponent(txtmodelo)
                                     .addComponent(txtmarca)
-                                    .addComponent(JMotivo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(366, 366, 366)
-                                .addComponent(Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(JMotivo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addContainerGap(167, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -219,7 +230,11 @@ public class Registro extends javax.swing.JDialog {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(JMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(175, 175, 175)
+                .addGap(6, 6, 6)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(costo1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(141, 141, 141)
                 .addComponent(Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -280,7 +295,12 @@ public class Registro extends javax.swing.JDialog {
             return;
         }
        
-        
+         if (costo1.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Ingrese el telefono");
+            costo1.requestFocus();
+            return;
+        }
+       
         
         int ID = Integer.parseInt(txtidenti.getText());
         String nom = txtnombre.getText();
@@ -290,13 +310,14 @@ public class Registro extends javax.swing.JDialog {
         String marca = txtmarca.getText();
         String model = txtmodelo.getText();
         String motivo = JMotivo.getSelectedItem().toString();
+        int costo= Integer.parseInt(costo1.getText());
         Date date = new Date();
         LocalDate fecha = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         
      
     
         
-        Nodo nue = new Nodo(ID,nom, direcc,telef,placa,marca,model,motivo,fecha);
+        Nodo nue = new Nodo(ID,nom, direcc,telef,placa,marca,model,motivo,costo,fecha);
         lista.insertar(nue);
         JOptionPane.showMessageDialog(this, "Bienvenido al taller Santo Cachon");     
         txtnombre.setText("");
@@ -306,30 +327,32 @@ public class Registro extends javax.swing.JDialog {
         txtidenti.setText("");
         txtmarca.setText("");
         txtmodelo.setText("");
-        
+        costo1.setText("");
         txtplaca.setText("");
    
-        txtPro.setText("");
-        txtPro.append("\t\t Registro" + "\n\n");
+        
        
-       
+        
+        txtPro.append("\t\t  Registro Mecanica automotriz Santo Cachon" + "\n\n");
+        txtPro.append("N. \t Nombre \t Direccion \t Telefono \t Placa \t Marca \t Modelo        \t Motivo \t Costo \t Fecha \n");
     
         
         Nodo aux = lista.pri;
 
         while (aux != null) {
          
-                txtPro.append("Cedula: "+aux.cedula + "\n");
-                txtPro.append("Nombre: " + aux.nombre + "\n");
-                txtPro.append("Dirección: " + aux.direccion + "\n");
-                txtPro.append("Telefono: " + aux.telefono + "\n");
-                txtPro.append("Placa: " + aux.placa + "\n");
-                txtPro.append("Marca: " + aux.marca+ "\n");
-                txtPro.append("Modelo: " + aux.modelo+ "\n");
-                txtPro.append("Motivo: " + aux.motivo_i+ "\n");
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                String fechaFormateada = dateFormat.format(aux.fec_Ingreso);
-                txtPro.append("Fecha: " + fechaFormateada+"\n");
+                txtPro.append(" "+aux.cedula + "\t");
+                txtPro.append(" " + aux.nombre + "\t");
+                txtPro.append("" + aux.direccion + "\t");
+                txtPro.append(" " + aux.telefono + "\t");
+                txtPro.append(" " + aux.placa + "\t");
+                txtPro.append("" + aux.marca+ "\t");
+                txtPro.append(" " + aux.modelo+ "\t");
+                txtPro.append( "" + aux.motivo_i+ "\t");
+                txtPro.append( "" + aux.costo1+ "\t");
+              //  SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                //String fechaFormateada = dateFormat.format(aux.fec_Ingreso);
+                txtPro.append("Fecha: " + aux.fec_Ingreso.toString()+"\t");
                 txtPro.append("_ _ _ _ _ _ _ _ _ _ _ _  _" + "\n");
                 
             
@@ -380,12 +403,22 @@ public class Registro extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_txtmarcaKeyTyped
 
+    private void costo1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_costo1KeyTyped
+         int key=evt.getKeyChar();
+        boolean numero =key>=48 && key <= 57;
+        if(!numero){
+             evt.consume();
+        }
+    }//GEN-LAST:event_costo1KeyTyped
+
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Agregar;
     private javax.swing.JComboBox<String> JMotivo;
+    private javax.swing.JTextField costo1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

@@ -39,6 +39,7 @@ public class Facturación extends javax.swing.JDialog {
         detalle = new javax.swing.JLabel();
         costo = new javax.swing.JLabel();
         tipo = new javax.swing.JLabel();
+        costoR = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Facturación \"El Santo Cachon\"");
@@ -86,10 +87,13 @@ public class Facturación extends javax.swing.JDialog {
         detalle.setText("Detalle del servicio:");
 
         costo.setForeground(new java.awt.Color(0, 0, 0));
-        costo.setText("costo de Todo:");
+        costo.setText("costo Servicio:");
 
         tipo.setForeground(new java.awt.Color(0, 0, 0));
         tipo.setText("tipo de servicio:");
+
+        costoR.setForeground(new java.awt.Color(0, 0, 0));
+        costoR.setText("Costo:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -127,7 +131,8 @@ public class Facturación extends javax.swing.JDialog {
                                 .addGap(39, 39, 39)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(costoR, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -160,7 +165,9 @@ public class Facturación extends javax.swing.JDialog {
                         .addGap(130, 130, 130)
                         .addComponent(facturar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
+                        .addGap(21, 21, 21)
+                        .addComponent(costoR, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(motivo, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(74, 74, 74))
         );
@@ -199,7 +206,7 @@ public class Facturación extends javax.swing.JDialog {
             placa.setText("Placa del Vehiculo: No existe");
             motivo.setText("motivo: No existe");
             detalle.setText("motivo: No existe");
-            costo.setText("motivo: No existe");
+            costo.setText("Costo: No existe");
             facturar.setEnabled(false);
         }
         else {
@@ -208,6 +215,7 @@ public class Facturación extends javax.swing.JDialog {
             telefono.setText("Telefono: " + aux.telefono);
             placa.setText("Placa del vehiculo: " + aux.placa);
             motivo.setText("Motivo de ingreso: " + aux.motivo_i);
+              costo.setText("Costo: "+aux.costo1);
             facturar.setEnabled(true);
         }  
          NodoRep auxRep= aux.priRep;
@@ -217,7 +225,7 @@ public class Facturación extends javax.swing.JDialog {
 }            if (aux!=null) { 
             tipo.setText("Detalle del servicio: " + auxRep.TipoRepuestos);
             detalle.setText("Detalle del servicio: " + auxRep.detalle_servicio);
-            costo.setText("costo de todo: " + auxRep.costo);
+            costo.setText("costo de  Servicio: " + auxRep.costo);
             
             facturar.setEnabled(true);
 }
@@ -239,6 +247,7 @@ public class Facturación extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField cedula;
     private javax.swing.JLabel costo;
+    private javax.swing.JLabel costoR;
     private javax.swing.JLabel detalle;
     private javax.swing.JLabel direccion;
     private javax.swing.JButton facturar;
