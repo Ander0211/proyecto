@@ -6,6 +6,7 @@
 package taller_mecanica;
 
 import java.util.Calendar;
+import java.time.LocalDate;
 import java.util.Date;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -49,7 +50,6 @@ public class Administrador extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtresultado = new javax.swing.JTextArea();
         Jservicio = new javax.swing.JComboBox<>();
-        JFecha3 = new com.toedter.calendar.JDateChooser();
 
         jButton2.setText("jButton2");
 
@@ -88,9 +88,7 @@ public class Administrador extends javax.swing.JDialog {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 19, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(130, 130, 130)
-                .addComponent(JFecha3, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(130, 520, Short.MAX_VALUE)
                 .addComponent(Jservicio, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(124, 124, 124))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -102,12 +100,9 @@ public class Administrador extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23)
-                        .addComponent(Jservicio, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(JFecha3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23)
+                .addComponent(Jservicio, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
                 .addComponent(bntrepor1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(137, 137, 137)
@@ -157,11 +152,13 @@ public class Administrador extends javax.swing.JDialog {
         double sumaOctubre = 0;
         double sumaNoviembre = 0;
         double sumaDiciembre = 0;
-        while (aux != null && aux.fec_Ingreso != null) {
+        while (aux != null && aux.getFec_Ingreso() != null) {
             
             Calendar calendar = Calendar.getInstance();
-            calendar.setTime(aux.fec_Ingreso);
-            int mesActual = calendar.get(Calendar.MONTH) + 1;
+            //calendar.setTime(aux.getFec_Ingreso());
+            LocalDate fechaIngreso = aux.getFec_Ingreso();
+            //int mesActual = calendar.get(Calendar.MONTH) + 1;
+            int mesActual = fechaIngreso.getMonthValue(); // Obtener el mes
 
             double sumaMensual = 0;
 
@@ -235,7 +232,6 @@ public class Administrador extends javax.swing.JDialog {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.toedter.calendar.JDateChooser JFecha3;
     private javax.swing.JComboBox<String> Jservicio;
     private javax.swing.JButton bntrepor1;
     private javax.swing.JButton jButton2;
