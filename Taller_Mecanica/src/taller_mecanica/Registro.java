@@ -3,6 +3,7 @@ package taller_mecanica;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -289,7 +290,9 @@ public class Registro extends javax.swing.JDialog {
         String marca = txtmarca.getText();
         String model = txtmodelo.getText();
         String motivo = JMotivo.getSelectedItem().toString();
-        Date fecha = new Date();
+        Date date = new Date();
+        LocalDate fecha = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        
      
     
         

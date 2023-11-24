@@ -5,7 +5,7 @@
  */
 package taller_mecanica;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  *
@@ -16,7 +16,7 @@ public class NodoRep {
     String TipoRepuestos;
     String detalle_servicio; 
     int costo;
-    Date fecha_Salida;
+    LocalDate fecha_Salida;
     NodoRep sigREP;
     
 
@@ -24,12 +24,12 @@ public class NodoRep {
     
     }
 
-    public NodoRep(int Id, String TipoRepuestos, String detalle_servicio, int costo, Date fecha_Salida) {
+    public NodoRep(int Id, String TipoRepuestos, String detalle_servicio, int costo, LocalDate fecha_Salida) {
         this.Id = Id;
         this.TipoRepuestos = TipoRepuestos;
         this.detalle_servicio = detalle_servicio;
         this.costo = costo;
-        this.fecha_Salida =fecha_Salida;
+        this.fecha_Salida = fecha_Salida;
     }
     
 

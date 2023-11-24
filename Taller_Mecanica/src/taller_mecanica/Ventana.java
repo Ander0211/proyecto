@@ -1,6 +1,8 @@
 
 package taller_mecanica;
 
+import java.time.LocalDate;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 
@@ -238,6 +240,26 @@ Facturación y = new Facturación (this, true, lista);
         }
         //</editor-fold>
 
+        
+        // Crear una instancia de LocalDate con la fecha actual
+        LocalDate fechaActual = LocalDate.now();
+
+        // Crear un nuevo nodo con datos específicos
+        Nodo miNodo = new Nodo(
+                123456789,          // cedula
+                "Juan Pérez",       // nombre
+                "Calle 123",        // direccion
+                "555-1234",         // telefono
+                "ABC123",           // placa
+                "Toyota",           // marca
+                "Corolla",          // modelo
+                "Reparación",       // motivo_i
+                fechaActual         // fec_Ingreso
+        );
+
+        // Imprimir el nodo para verificar que se haya creado correctamente
+        System.out.println(miNodo);
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
